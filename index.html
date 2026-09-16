@@ -1,203 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#111111">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Rei da Betoneira</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+html,body{
+margin:0;
+width:100%;
+min-height:100%;
+font-family:Arial,sans-serif;
+background:#111;
+color:#fff
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    background: #111;
-    font-family: Arial, Helvetica, sans-serif;
+body{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden
 }
 
-body {
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+.box{
+width:min(92vw,430px);
+text-align:center;
+padding:18px
 }
 
-.tela {
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
+img{
+width:100%;
+max-height:58vh;
+object-fit:cover;
+border-radius:18px;
+display:block
 }
 
-.tela.ativa {
-    display: flex;
+h1{
+font-size:29px;
+line-height:1.15;
+margin:18px 0
 }
 
-.foto {
-    width: min(88vw, 430px);
-    max-height: 58vh;
-    object-fit: contain;
-    border-radius: 18px;
-    display: block;
-    box-shadow: 0 10px 35px rgba(0,0,0,.6);
+p{
+font-size:21px;
+font-weight:800;
+line-height:1.35
 }
 
-h1 {
-    color: white;
-    font-size: clamp(24px, 7vw, 40px);
-    line-height: 1.15;
-    margin: 25px 0;
-    font-weight: 900;
+button{
+border:0;
+border-radius:14px;
+padding:16px 26px;
+font-size:20px;
+font-weight:bold;
+margin:6px;
+cursor:pointer;
+touch-action:manipulation
 }
 
-.botoes {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.sim{
+background:#22c55e;
+color:#06130a
 }
 
-button {
-    border: 0;
-    border-radius: 14px;
-    padding: 16px 30px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    touch-action: manipulation;
+.nao{
+background:#eee;
+color:#111
 }
 
-#sim {
-    background: #16a34a;
-    color: white;
+.partiu{
+background:#f59e0b;
+color:#111;
+width:90%
 }
 
-#nao {
-    background: #dc2626;
-    color: white;
-    position: relative;
-}
-
-.final {
-    color: white;
-    font-size: clamp(25px, 7vw, 42px);
-    font-weight: 900;
-    line-height: 1.15;
-    max-width: 700px;
-}
-
-@media (max-width: 500px) {
-    .foto {
-        width: 92vw;
-        max-height: 52vh;
-    }
-
-    h1 {
-        margin: 20px 0;
-    }
-
-    button {
-        padding: 15px 25px;
-        font-size: 18px;
-    }
+.hidden{
+display:none
 }
 </style>
 </head>
 
 <body>
 
-<!-- TELA 1 -->
-<section id="tela1" class="tela ativa">
-    <img id="foto1" class="foto" alt="Foto">
-    
-    <h1>VAMOS PARA A FESTA,<br>REI DA BETONEIRA?</h1>
+<div class="box">
 
-    <div class="botoes">
-        <button id="sim" onclick="proximaTela()">SIM</button>
-        <button id="nao">NÃO</button>
-    </div>
-</section>
+<div id="tela1">
 
-<!-- TELA 2 -->
-<section id="tela2" class="tela">
-    <img id="foto2" class="foto" alt="Foto">
+<img src="data:image/jpeg;base64,REPLACE_FOTO_1">
 
-    <h1>AÍ SIM GATÃO,<br>PAROU DE PAGAR DE MÁQUINA!</h1>
+<h1>VAMOS PARA A FESTA,<br>REI DA BETONEIRA?</h1>
 
-    <button onclick="ultimaTela()">CONTINUAR</button>
-</section>
+<button class="sim" onclick="tela2()">SIM</button>
+<button class="nao" id="nao">NÃO</button>
 
-<!-- TELA 3 -->
-<section id="tela3" class="tela">
-    <img id="foto3" class="foto" alt="Foto">
+</div>
 
-    <div class="final">
-        RESPONDA SEUS AMIGOS AGORA, GATÃO.<br><br>
-        PARA DE SE FAZER DE MICROONDAS.
-    </div>
-</section>
+<div id="tela2" class="hidden">
+
+<img src="data:image/jpeg;base64,REPLACE_FOTO_2">
+
+<h1>AÍ SIM GATÃO,<br>PAROU DE PAGAR DE MÁQUINA!</h1>
+
+<button class="partiu" onclick="tela3()">CONTINUAR</button>
+
+</div>
+
+<div id="tela3" class="hidden">
+
+<img src="data:image/jpeg;base64,REPLACE_FOTO_3">
+
+<p>
+RESPONDA SEUS AMIGOS AGORA, GATÃO.<br><br>
+PARA DE SE FAZER DE MICROONDAS.
+</p>
+
+</div>
+
+</div>
 
 <script>
-/*
-  COLOQUE AS 3 FOTOS NA RAIZ DO PROJETO
-  com estes nomes:
-
-  foto1.jpg
-  foto2.jpg
-  foto3.jpg
-*/
-
-document.getElementById("foto1").src = "foto1.jpg";
-document.getElementById("foto2").src = "foto2.jpg";
-document.getElementById("foto3").src = "foto3.jpg";
-
-function mostrar(id) {
-    document.querySelectorAll(".tela").forEach(function(tela) {
-        tela.classList.remove("ativa");
-    });
-
-    document.getElementById(id).classList.add("ativa");
+function tela2(){
+document.getElementById("tela1").classList.add("hidden");
+document.getElementById("tela2").classList.remove("hidden");
 }
 
-function proximaTela() {
-    mostrar("tela2");
+function tela3(){
+document.getElementById("tela2").classList.add("hidden");
+document.getElementById("tela3").classList.remove("hidden");
 }
 
-function ultimaTela() {
-    mostrar("tela3");
+const nao=document.getElementById("nao");
+
+function fugir(){
+const x=Math.random()*180-90;
+const y=Math.random()*120-60;
+nao.style.transform="translate("+x+"px,"+y+"px)";
 }
 
-/* Botão NÃO foge */
-var botaoNao = document.getElementById("nao");
-
-function fugir() {
-    var x = Math.random() * 180 - 90;
-    var y = Math.random() * 120 - 60;
-
-    botaoNao.style.transform =
-        "translate(" + x + "px," + y + "px)";
-}
-
-botaoNao.addEventListener("mouseenter", fugir);
-botaoNao.addEventListener("touchstart", function(e) {
-    e.preventDefault();
-    fugir();
+nao.addEventListener("mouseenter",fugir);
+nao.addEventListener("touchstart",function(e){
+e.preventDefault();
+fugir();
 });
-botaoNao.addEventListener("click", fugir);
+nao.addEventListener("click",fugir);
 </script>
 
 </body>
